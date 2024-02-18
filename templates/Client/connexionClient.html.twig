@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="row">
+        <form action="{{ path('client_valide_connexion') }}" method="post"
+        >
+            <fieldset class="form-group">
+                <div class="input-group col">
+                    <legend>Connection</legend>
+                    <label class="form-label">Email :
+                        <input type="email" name="email" placeholder="Email address" size="18" aria-describedby="emailHelp" value="{{ donnees.email | default('') }}" required>
+                    </label>
+                </div>
+                <div class="input-group col">
+                    <label class="form-label">Mot de passe :
+                        <input type="password" placeholder="Mot de passe" name="password" size="18" value="{{ donnees.password | default('') }}" required>
+                    </label>
+                </div>
+                    {% if errors.connexion is defined %}
+                        <small class="invalid-feedback">{{ errors.connexion }}</small><br>
+                    {% endif %}
+                    <input class="btn btn-primary" type="submit" name="valideForm" value="Valider">
+            </fieldset>
+        </form>
+        <div>
+            <a class="link-primary" href="{{ path('client_inscription') }}">Pas encore inscrit</a>
+        </div>
+    </div>
+{% endblock %}
+

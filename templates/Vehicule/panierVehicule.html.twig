@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="row">
+        {% if Vehicules | length > 0 %}
+
+        {% else %}
+            <h2 class="modal-title">Votre panier est vide !!</h2>
+            <a href="{{ path('controller_show_vehicule') }}" class="link-black">Accueil</a>
+        {% endif %}
+    </div>
+{% endblock %}

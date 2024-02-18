@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a href="{{ path('controller_show_vehicule') }}" class="navbar-brand">Thomas Automobile</a>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Compte
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ path('client_connexion') }}">Se connecter</a></li>
+                        <li><a class="dropdown-item" href="{{ path('client_inscription') }}">Inscription</a></li>
+                        <li><a class="dropdown-item" href="{{ path('client_edit') }}">Modifier mon compte</a></li>
+                        <li><a class="dropdown-item" href="{{ path('client_logout') }}">Se déconnecter</a></li>
+                        <li><a class="dropdown-item" href="{{ path('client_suppression') }}">Supprimer mon compte</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendeur</a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="{{ path('vendeur_connexion') }}">Se connecter vendeur</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ path('vendeur_services') }}">Services</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Facture
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ path('client_facture') }}">Mes factures</a></li>
+                        <li><a class="dropdown-item" href="{{ path('vehicule_disponible_reservation') }}">Réserver un véhicule</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="text-end">
+            <button type="button" class="btn btn-outline-light me-2" ><a href="{{ path('client_connexion') }}">Se connecter</a></button>
+            <button type="button" class="btn btn-light"><a href="{{ path('client_inscription') }}">Inscription</a></button>
+        </div>
+    </div>
+</nav>

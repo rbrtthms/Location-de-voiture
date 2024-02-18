@@ -1,0 +1,47 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="h1" style="margin-top: 10px">Factures de {{ client.nom }}</h1>
+        </div>
+        {% if factures is defined %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Valeur</th>
+                            <th class="col">Date debut</th>
+                            <th class="col">Date fin</th>
+                            <th class="col">Nom véhicule</th>
+                            <th class="col">Photo véhicule</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for facture in factures %}
+                            <tr>
+                                <th>{{ facture.id }}</th>
+                                <td>{{ facture.idC.nom }} {{ facture.idC.prenom }}</td>
+                                <td>{{ facture.valeur }}.00€</td>
+                                <td>{{ facture.dateD|date('d/m/Y') }}</td>
+                                <td>{{ facture.dateF|date('d/m/Y') }}</td>
+                                <td>{{ facture.idV.name }}</td>
+                                <td><img src="{{ app.request.basePath }}{{ facture.idV.photo }}" style="height: 100px;" alt="{{ facture.idV.name }}"></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="col">Nombre de facture : {{ data.nbFacture | default('') }}</th>
+                            <th class="col">Nombre de véhicule disponible : {{ data.vehiculeDisponible | default('') }}</th>
+                            <th class="col">Total  : {{ data.totalFacture | default('') }}.00€</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        {% else %}
+            <h4 class="h4">Aucune facture pour ce client</h4>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <form action="{{ path('vendeur_valide_connexion') }}" method="post" class="row g-3 needs-validation">
+            <fieldset class="form-group">
+                <div class="col">
+                    <legend>Connection vendeur</legend>
+                    <label class="form-label">Identifiant vendeur :
+                        <input type="number" name="identifiant" placeholder="123456" size="18" value="" required>
+                    </label>
+                </div>
+                <div class="col">
+                    <label class="form-label">Mot de passe :
+                        <input type="password" name="password" placeholder="" size="18" value="" >
+                    </label>
+                </div>
+                {% if errors is defined %}
+                    <small class="error">Si vous n'êtes pas un vendeur connectez vous avec la page client :
+                        <a href="{{ path('client_connexion') }}">Connexion client</a></small><br>
+                {% endif %}
+                <input class="btn btn-primary" type="submit" name="valideForm" value="Valider">
+            </fieldset>
+        </form>
+
+    </div>
+{% endblock %}

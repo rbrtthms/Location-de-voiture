@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "bootstrap": "^5.1.2"
+  },
+  "dependencies": {
+    "mdb-ui-kit": "^3.9.0"
+  }
+}

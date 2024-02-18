@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <h1 style="margin-top: 10px">Création d'une voiture</h1>
+        {{ form_start(formvehicule) }}
+        <div class="col">
+            <label>Nom :
+                {{ form_widget(formvehicule.name) }}
+            </label>
+        </div>
+        <div class="col">
+            <label>Etat disponible :
+                {{ form_widget(formvehicule.etat) }}
+            </label>
+        </div>
+        <div class="col">
+            <label>Photo :
+                {{ form_widget(formvehicule.photo) }}
+            </label>
+        </div>
+        <div class="col">
+
+            <label>Caractères :
+                {{ form_widget(formvehicule.caracteres) }}
+            </label>
+        </div>
+        {{ form_end(formvehicule) }}
+    </div>
+{%  endblock %}

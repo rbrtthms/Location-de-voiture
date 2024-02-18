@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        {% if  vehicules is defined %}
+            <h1 class="title" style="margin-top: 10px">Voiture disponible</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Image</th>
+                    <th class="col">Caractéristiques</th>
+                    <th scope="col">Disponibilité</th>
+                    <th class="col">Réserver</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for vehicule in vehicules %}
+                    <tr>
+                        <th>{{ vehicule.id }}</th>
+                        <td>{{ vehicule.name }}</td>
+                        <td><img src="{{ app.request.basePath }}{{ vehicule.photo }}" style="height: 100px;" alt="{{ vehicule.name }}"></td>
+                        <td>
+                            <lu>
+                                <li>Moteur :{{ vehicule.caracteres.moteur }}</li>
+                                <li>Nombre de portes : {{ vehicule.caracteres.nbPortes }}</li>
+                                <li>Couleur : {{ vehicule.caracteres.couleur }}</li>
+                                <li>Options : {{ vehicule.caracteres.option }}</li>
+                                <li>Carburant : {{ vehicule.caracteres.carburant }}</li>
+                                <li>Autres : {{ vehicule.caracteres.autre }}</li>
+                            </lu>
+                        </td>
+                        <td>{% if vehicule.etat == true %}
+                                oui
+                            {% else %}
+                                nom
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button class="btn btn-success">
+                                <a href="{{ path('client_facture_reservation',{ 'idV' : vehicule.id } ) }}">réserver</a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h2>Aucun véhicule disponible à la réservation</h2>
+        {% endif %}
+    </div>
+{% endblock %}

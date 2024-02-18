@@ -1,0 +1,36 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="margin-top: 10px">Plan du site</h1>
+            <ul>
+                <li><a class="link-primary" href="{{ path('controller_show_vehicule') }}">Accueil</a></li>
+            </ul>
+            <h5 class="h5">Client</h5>
+            <ul>
+                <li><a class="link-primary" href="{{ path('client_connexion') }}">Se connecter</a></li>
+                <li><a class="link-primary" href="{{ path('client_inscription') }}">S'inscrire</a></li>
+                <li><a class="link-primary" href="{{ path('client_logout') }}">Se déconnecter</a></li>
+                <li><a class="link-primary" href="{{ path('client_edit') }}">Modifier mon compte</a></li>
+                <li><a class="link-primary" href="{{ path('client_suppression') }}">Supprimer mon compte</a></li>
+                <li><a class="link-primary" href="{{ path('client_facture') }}">Mes factures</a></li>
+                <li><a class="link-primary" href="{{ path('client_facture_reservation_encours') }}">Réservation en cours</a></li>
+                <li><a class="link-primary" href="{{ path('vehicule_disponible_reservation') }}">Véhicule disponible à la réservation</a></li>
+            </ul>
+            <h5 class="h5">Vendeur</h5>
+            <ul>
+                <li><a class="link-primary" href="{{ path('vendeur_connexion') }}">Se connecter</a></li>
+                <li><a class="link-primary" href="{{ path('vendeur_logout') }}">Se déconnecter</a></li>
+                <li><a class="link-primary" href="{{ path('vendeur_vehicule_add') }}">Ajouter un véhicule</a></li>
+                <li><a class="link-primary" href="{{ path('vendeur_vehicule_disponible') }}">Véhicule disponible</a></li>
+                <li><a class="link-primary" href="{{ path('vendeur_vehicule_indisponible') }}">Véhicule indisponible</a></li>
+                <li><a class="link-primary" href="{{ path('factures_vendeur_dernier_mois') }}">Factures du dernier mois</a></li>
+            </ul>
+            <h5 class="h5">Autres pages</h5>
+            <ul>
+                <li><a class="link-primary" href="{{ path('vendeur_services') }}">Services vendeur</a></li>
+                <li><a class="link-primary" href="{{ path('plandDuSite') }}">Plan du site</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

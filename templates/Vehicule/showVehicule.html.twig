@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        {% if message is defined %}
+            <h2 class="alerte">{{ message }}</h2>
+        {% endif %}
+    <h1 style="margin-top: 10px">
+        <a class="link-black" href="{{ path('vehicule_disponible_reservation') }}">Réserver un véhicule</a>
+    </h1>
+    {% if vehicules is not empty %}
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for vehicule in vehicules  %}
+                    <div class="col">
+                        <div class="card">
+                            <img src="{{ app.request.basePath }}{{ vehicule.photo }}" class="card-img-top" alt="{{ vehicule.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ vehicule.name }} <button class="btn btn-success position-relative">
+                                        <a href="{{ path('client_facture_reservation',{ 'idV' : vehicule.id } ) }}">Réserver</a>
+                                    </button></h5>
+
+                                <p class="card-text">
+                                        <lu>
+                                            <li>Moteur :{{ vehicule.caracteres.moteur }}</li>
+                                            <li>Nombre de portes : {{ vehicule.caracteres.nbPortes }}</li>
+                                            <li>Couleur : {{ vehicule.caracteres.couleur }}</li>
+                                            <li>Options : {{ vehicule.caracteres.option }}</li>
+                                            <li>Carburant : {{ vehicule.caracteres.carburant }}</li>
+                                            <li>Autres : {{ vehicule.caracteres.autre }}</li>
+                                        </lu>
+                                    Véhicule :
+                                    {% if (vehicule.etat) %}
+                                        disponible
+                                    {% else %}
+                                        indisponible
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        {% else %}
+        <h1>Il n'y a plus de véhicule disponible</h1>
+        {% endif %}
+    </div>
+{% endblock %}

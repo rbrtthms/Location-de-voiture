@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <img class="card-img-top mb-5 mb-md-0" src="{{ app.request.basePath }}{{ vehicule.photo }}" alt="{{ vehicule.name }}" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="small mb-1 text-success">Véhicule disponible</div>
+                        <h1 class="display-5 fw-bolder">{{ vehicule.name }}</h1>
+                        <div class="fs-5 mb-5">
+                            <span class="text-decoration-line-through">{{ vehicule.valeur | default('') }}.00€</span>
+                            <span>{{ vehicule.valeur | default('') }}.00€</span>
+                        </div>
+                        <ul>
+                            <li>Moteur :{{ vehicule.caracteres.moteur }}</li>
+                            <li>Nombre de portes : {{ vehicule.caracteres.nbPortes }}</li>
+                            <li>Couleur : {{ vehicule.caracteres.couleur }}</li>
+                            <li>Options : {{ vehicule.caracteres.option }}</li>
+                            <li>Carburant : {{ vehicule.caracteres.carburant }}</li>
+                            <li>Autres : {{ vehicule.caracteres.autre }}</li>
+                        </ul>
+                        <hr>
+                        <form action="{{ path('facture_valide_reservation', { 'idV' : vehicule.id }) }}" method="post" class="row g-3 needs-validation">
+                            <div class="d-flex">
+                                <label for="">Date de début :
+                                    <input class=" text-center me-3" id="inputQuantity" type="date" name="dateD" placeholder="" value="" size="8" />
+                                </label>
+                                <label for="">Date de Fin :
+                                    <input class=" text-center me-3" id="inputQuantity" type="date"  name="dateF" placeholder="" value=""  />
+                                </label>
+                                <div class="error-message">
+                                    {% if errors.date is defined %}
+                                        <small class="invalid-feedback">{{ errors.date }}</small>
+                                    {% endif %}
+                                </div>
+                                <button type="submit" class="btn btn-outline-success flex-shrink-0">
+                                    Réserver ce véhicule
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

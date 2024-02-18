@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="row">
+    {% if  vehicules is defined %}
+        <h1 class="title" style="margin-top: 10px">Voiture disponible</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Image</th>
+                <th class="col">Caractéristiques</th>
+                <th scope="col">Disponibilité</th>
+                <th class="col">Service</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for vehicule in vehicules %}
+                    <tr>
+                        <th>{{ vehicule.id }}</th>
+                        <td>{{ vehicule.name }}</td>
+                        <td><img src="{{ app.request.basePath }}{{ vehicule.photo }}" style="height: 100px;" alt="{{ vehicule.name }}">{{ vehicule.photo }}</td>
+                        <td>
+                            <lu>
+                                <li>Moteur :{{ vehicule.caracteres.moteur }}</li>
+                                <li>Nombre de portes : {{ vehicule.caracteres.nbPortes }}</li>
+                                <li>Couleur : {{ vehicule.caracteres.couleur }}</li>
+                                <li>Options : {{ vehicule.caracteres.option }}</li>
+                                <li>Carburant : {{ vehicule.caracteres.carburant }}</li>
+                                <li>Autres : {{ vehicule.caracteres.autre }}</li>
+                            </lu>
+                        </td>
+                        <td>{% if vehicule.etat == true %}
+                                oui
+                                {% else %}
+                                nom
+                            {% endif %}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning">
+                                <a href="{{ path('vendeur_vehicule_rendre_indisponible', {'id': vehicule.id}) }}">Indisponible</a>
+                            </button>
+                            <button type="button" class="btn btn-danger">
+                                <a href="{{ path('vendeur_vehicule_supprimer', {'id': vehicule.id}) }}">Supprimer</a>
+                            </button>
+                        </td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th class="col">Total : {{ data.nbTotal | default('') }}</th>
+                <th class="col">Nombre de véhicule disponible : {{ data.nbVehicule | default('') }}</th>
+                <th class="col"><a class="link-primary" href="{{ path('vendeur_vehicule_indisponible') }}">vehicules indisponible</a></th>
+                <th class="col"><a class="link-primary" href="{{ path('vendeur_vehicule_add') }}">Ajouter un véhicule au catalogue</a></th>
+                <th class="col"></th>
+                <th class="col"></th>
+            </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <h2>Aucun véhicule enregistré dans la base</h2>
+    {% endif %}
+</div>
+{% endblock %}

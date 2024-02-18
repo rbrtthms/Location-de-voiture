@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="row">
+        <form action="{{ path('client_valide_form_client') }}" method="post" class="row g-3 needs-validation">
+            <fieldset>
+                <legend>Inscription</legend>
+                <div class="col">
+                    <label for="nom">Nom :
+                        <input type="text" name="nom" size="18" placeholder="Robert" value="{{ donnees.nom | default('') }}">
+                    </label>
+                </div>
+                {% if errors.nom is defined %}
+                    <small class="error">{{ errors.nom }}</small><br>
+                {% endif %}
+                <div class="col">
+                    <label>Prénom :
+                        <input type="text" name="prenom" placeholder="Thomas" size="18" value="{{ donnees.prenom | default('') }}">
+                    </label>
+                </div>
+                {% if errors.prenom is defined %}
+                    <small class="cm-error">{{ errors.prenom }}</small><br>
+                {% endif %}
+                <div class="col">
+                    <label>Pseudo (null possible) :
+                        <input type="text" name="pseudo" size="18" placeholder="TomTom" value="{{ donnees.pseudo | default('') }}">
+                    </label><br>
+                </div>
+                    {% if errors.pseudo is defined %}
+                        <small class="error">{{ errors.pseudo }}</small><br>
+                    {% endif %}
+                <div class="col">
+                    <label>Email :
+                        <input type="email" name="email" placeholder="tomtom.jerry@mail.com" size="18" value="{{ donnees.email | default('') }}">
+                    </label>
+                </div>
+                    {% if errors.email is defined %}
+                        <small class="error">{{ errors.email }}</small><br>
+                    {% endif %}
+                <div class="col">
+                    <label>Adresse :
+                        <input type="text" name="adresse" placeholder="2 rue Tom, 75016 Paris" size="18" value="{{ donnees.adresse | default('') }}">
+                    </label>
+                </div>
+                {% if errors.adresse is defined %}
+                    <small class="error">{{ errors.adresse }}</small><br>
+                {% endif %}
+                <div class="col">
+                    <label>Mot de passe : terr!@#$%343TRS
+                        <input type="password" name="password" placeholder="terr!@#$%343TRS" size="18" value="{{ donnees.password | default('') }}">
+                    </label>
+                </div>
+                <div class="col">
+                    <label>Retaper le mot de passe :
+                        <input type="password" name="passwordVerify" placeholder="terr!@#$%343TRS" size="18" value="{{ donnees.passwordVerify | default('') }}">
+                    </label>
+                </div>
+                    {% if errors.password is defined %}
+                        <small class="error">{{ errors.password }}</small><br>
+                    {% elseif errors.password is  defined %}
+                        <small class="error">{{ errors.passwordVerify }}</small><br>
+                    {% endif %}
+                    <input class="btn btn-primary" type="submit" name="valideForm"/>
+            </fieldset>
+        </form>
+        <a class="link-primary" href="{{ path('client_connexion') }}">Déjà inscrit, connecte toi!</a>
+    </div>
+{% endblock %}
